@@ -57,15 +57,14 @@ const MainForm = () => {
     setLoading(true);
     console.log(userRegistrationData);
 
-    let [response] = await Promise.all([
-      // fetch("https://motionless-duck-jodhpurs.cyclic.app/api/userData", {
-      //   method: "POST",
-      //   headers: {
-      //     "Content-Type": "application/json",
-      //     "Access-Control-Allow-Origin": "*",
-      //   },
-      //   body: JSON.stringify(userRegistrationData),
-      // }),
+    let [response, mailer] = await Promise.all([
+      fetch("https://motionless-duck-jodhpurs.cyclic.app/api/userData", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(userRegistrationData),
+      }),
       fetch("https://motionless-duck-jodhpurs.cyclic.app/api/mailUser", {
         method: "POST",
         headers: {

@@ -11,9 +11,9 @@ const app = express();
 
 const port = 8000;
 const corsOptions = {
-  origin: "*",
-  credentials: true,
-  optionSuccessStatus: 200,
+  origin: "https://effizient-nine.vercel.app/", // Replace with your frontend's URL
+  methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+  credentials: false,
 };
 
 app.use(cors(corsOptions));
