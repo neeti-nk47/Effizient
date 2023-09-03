@@ -55,10 +55,9 @@ const MainForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
-    console.log(userRegistrationData);
 
     let [response, mailer] = await Promise.all([
-      fetch("https://motionless-duck-jodhpurs.cyclic.app/api/userData", {
+      fetch("https://motionless-duck-jodhpurs.cyclic.app/api/userData/", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -82,7 +81,9 @@ const MainForm = () => {
       isClosable: true,
     });
     const data = await response.json();
-    console.log(data.message);
+    console.log(data);
+    const mail = await mailer.json();
+    console.log(mail.message);
   };
 
   const handleReset = () => {
