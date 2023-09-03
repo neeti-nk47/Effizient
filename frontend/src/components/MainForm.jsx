@@ -12,6 +12,7 @@ import {
   ListItem,
   OrderedList,
   Select,
+  Spinner,
   Stack,
   Text,
   Textarea,
@@ -56,14 +57,14 @@ const MainForm = () => {
     setLoading(true);
 
     let [response, mailer] = await Promise.all([
-      fetch("https://effizient-backend-f6zu.onrender.com/api/userData", {
+      fetch("http://localhost:8080/api/userData", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify(userRegistrationData),
       }),
-      fetch("https://effizient-backend-f6zu.onrender.com/api/mailUser", {
+      fetch("http://localhost:8080/api/mailUser", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -81,7 +82,6 @@ const MainForm = () => {
     });
     const data = await response.json();
     console.log(data);
-    await mailer.json();
   };
 
   const handleReset = () => {
@@ -109,7 +109,12 @@ const MainForm = () => {
   };
 
   return (
-    <Box background="linear-gradient(#DAF1FE, aqua)" align={"center"} m="0">
+    <Box
+      background="linear-gradient(#DAF1FE, skyblue, aqua)"
+      align={"center"}
+      overflowY={"hidden"}
+      px={{ md: "15" }}
+    >
       <Link href="https://effizient.ca/">
         <Image src="/logo.png" w={{ base: "350px", md: "450px" }} />
       </Link>
@@ -649,9 +654,9 @@ const MainForm = () => {
             border="1px solid #ddd"
             boxShadow={" rgba(100, 100, 111, 0.2) 0px 7px 29px 0px"}
             colorScheme="blue"
-            w={{ md: "25%" }}
+            w={{ md: "20%" }}
           >
-            {loading ? "Submitting..." : "Submit"}
+            {loading ? <Spinner /> : "Submit"}
           </Button>
           <Button
             type="reset"
@@ -659,8 +664,10 @@ const MainForm = () => {
             borderRadius={"10px"}
             border="1px solid #ddd"
             boxShadow={" rgba(100, 100, 111, 0.2) 0px 7px 29px 0px"}
+            variant="outline"
             colorScheme="red"
-            w={{ md: "25%" }}
+            bg="white"
+            w={{ md: "20%" }}
           >
             Clear Form
           </Button>
