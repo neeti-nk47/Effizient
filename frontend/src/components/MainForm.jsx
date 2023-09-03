@@ -57,14 +57,14 @@ const MainForm = () => {
     setLoading(true);
 
     let [response, mailer] = await Promise.all([
-      fetch("http://localhost:8080/api/userData", {
+      fetch("https://motionless-duck-jodhpurs.cyclic.app/api/userData", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify(userRegistrationData),
       }),
-      fetch("http://localhost:8080/api/mailUser", {
+      fetch("https://motionless-duck-jodhpurs.cyclic.app/api/mailUser", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
